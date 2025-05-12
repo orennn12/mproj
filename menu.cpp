@@ -2,30 +2,80 @@
 #include <conio.h>
 using namespace std;
 
-void info(){
-system("cls");
-cout<< "Indonesia hebat, Poliban Juara";
-getch();
+int data[1000000], salin[1000000];
+int n;
 
+void salinData() {
+  for (int i = 0; i < n; i++){
+    salin[i] = data[i];
+  }
 }
+
+void sortData(int data[], int n){
+  int titip;
+  for (int i = 1; i < n; i++){
+    titip = data[i];
+    int j = i - 1;
+    while (j >= 0 && data[j] > titip){
+      data[j + 1] = data[j];
+      j--;
+    }
+    data[j + 1] = titip;
+  }
+}
+
 void dMenu(){
 system("cls");
-cout<<"Aplikasi Tampilan Menu"<<"\n";       
-cout<<"1. Menu Pertama"<<"\n";            
-cout<<"2. Menu Kedua"<<"\n";            
-cout<<"3. Menu Ketiga"<<"\n";           
+cout<<"Menu Utama"<<"\n";       
+cout<<"1. Masukkan Data"<<"\n";            
+cout<<"2. Tampilkan Data"<<"\n";            
+cout<<"3. Urutkan Data"<<"\n";           
 cout<<"4. Informasi"<<"\n";            
-cout<<"5. Exit"<<"\n";           
-cout<<"Masukan angka :";        
-
+cout<<"5. Keluar"<<"\n";           
+cout<<"Pilih menu (1-5) :";        
 }
 
-void mPertama(string pesan){
-system("cls");
-cout<<"hallo saya menu "<<pesan;
+void masukkanData(){
+  system("cls");
+  cout << "Masukkan Data : ";
+  cin >> n;
+  
+  for (int i = 0; i < n; i++){
+    cout << "Data ke-" << i + 1 << ": ";
+    cin >> data[i];
+  }
+  salinData();
+
+  cout << "Data berhasil dimasukkan\n";
+  getch();
+}
+
+void tampilkanData(){
+  system("cls");
+  cout << "Data yang dimasukkan: \n ";
+  for (int i = 0; i < n; i++){
+    cout << salin[i] << " ";
+  }
+  
+  getch();
+}
+
+void urutkanData(){
+  system("cls");
+  sortData(data, n);
+  cout << "Hasil data: \n";
+  for (int i = 0; i < n; i++) {
+    cout << data[i] << " ";
+}
+
 getch();
 }
 
+void info(){
+  system("cls");
+  cout<< "Sudahi ngodingmu, mari kita turu";
+  getch();
+  }
 
 int main() {
 char pl;
@@ -36,23 +86,18 @@ do
   switch (pl)
   {
    case '1':
-    /* code */
-    mPertama("pertama");
+    masukkanData();
     break;
    case '2':
-    mPertama("ke- dua");
-    /* code */ 
+    tampilkanData();
     break;  
    case '3':
-    mPertama("ke- tiga");
-    /* code */
+    urutkanData();
     break;  
    case '4':
     info();
-    /* code */
     break;  
     case '5':
-    /* code */
     break;
   
   default:
@@ -63,6 +108,7 @@ do
   }
 
 
-} while (pl!='5');
+}
+ while (pl!='5');
   return 0;
 }
