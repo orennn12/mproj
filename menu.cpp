@@ -2,7 +2,7 @@
 #include <conio.h>
 using namespace std;
 
-int data[1000000], salin[1000000];
+int data[100000], salin[100000];
 int n;
 
 void salinData() {
